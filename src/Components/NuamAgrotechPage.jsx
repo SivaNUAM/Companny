@@ -6,9 +6,9 @@ import {
   Wifi, Shield, CheckCircle, ArrowRight, Star, Users,
   TrendingUp, Globe, Mail, Phone, MapPin, Bot, Database
 } from "lucide-react";
-import smart from "../Assets/smart.png";
-import Terrace from "../Assets/terrace.png";
-import Roof from "../Assets/roof.png";
+import smart from "../assets/smart.png";
+import Terrace from "../assets/Terrace.png";
+import Roof from "../assets/Roof.png";
 
 const NuamAgrotechPage = () => {
   const heroRef = useRef(null);
