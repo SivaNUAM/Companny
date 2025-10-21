@@ -1,0 +1,67 @@
+/* Culture Section */
+.culture {
+  text-align: center;
+}
+
+.culture p {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  max-width: 700px;
+  margin: auto;
+}
+
+blockquote {
+  border-left: 4px solid #d946ef;
+  padding-left: 20px;
+  font-style: italic;
+  margin: 40px auto;
+  color: #e0e0e0;
+  max-width: 600px;
+  font-size: 1.2rem;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #d946ef, #3b82f6);
+  border: none;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #d946ef;
+  color: #d946ef;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(90deg, #c026d3, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+  outline: none;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: rgba(147, 51, 234, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+  outline: none;
+}

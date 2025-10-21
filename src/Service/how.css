@@ -1,0 +1,203 @@
+/* Section Base */
+.how-we-work {
+  background: linear-gradient(135deg, #000000, #1a0b0b);
+  padding: 100px 60px;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-bg {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(201, 24, 74, 0.1), transparent 60%);
+  backdrop-filter: blur(60px);
+  z-index: 0;
+}
+
+/* Typography */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 80px;
+}
+
+.how-title span {
+  color: #c9184a;
+}
+
+/* Flowchart */
+.flowchart-process {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.flow-icon {
+  font-size: 2.8rem;
+  color: #c9184a;
+  margin-bottom: 20px;
+}
+
+.flow-connector {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 30px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 500px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(201, 24, 74, 0.08);
+  transition: all 0.3s ease;
+}
+
+.flow-connector h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.flow-connector p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.arrow-down {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #c9184a;
+  animation: pulseArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseArrow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* === Liquid Bar === */
+.liquid-bar {
+  position: absolute;
+  right: 40px;
+  top: 100px;
+  bottom: 100px;
+  width: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.liquid-fill {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: var(--progress, 0%);
+  background: linear-gradient(to bottom, #c9184a, #ff7096);
+  border-radius: 20px;
+  transition: height 0.4s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.liquid-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 20px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: wave 2s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.liquid-steps {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  padding: 20px 0;
+}
+
+.liquid-number {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: bold;
+  z-index: 3;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.liquid-number:hover {
+  transform: scale(1.2);
+  color: #c9184a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .how-title {
+    font-size: 2.2rem;
+  }
+
+  .flow-connector {
+    padding: 16px;
+  }
+
+  .flow-connector h3 {
+    font-size: 1.3rem;
+  }
+
+  .flow-connector p {
+    font-size: 0.95rem;
+  }
+  .liquid-bar {
+    display: flex;
+    right: 20px;
+    top: 80px;
+    bottom: 60px;
+  }
+}

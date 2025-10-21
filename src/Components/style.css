@@ -1,0 +1,361 @@
+/* 🌐 Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  font-family: 'Segoe UI', sans-serif;
+  scroll-behavior: smooth;
+  color: #fff;
+
+  overflow-x: hidden;
+}
+
+/* ========================== */
+/* 🧊 Header Design */
+/* ========================== */
+.custom-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center the title */
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.8s ease;
+}
+.animate-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ========================== */
+/* 🖋️ Logo */
+/* ========================== */
+.logo-container {
+  position: absolute;
+  left: 40px;
+  display: flex;
+  align-items: center;
+}
+.header-logo {
+  height: 40px;
+  width: auto;
+}
+.header-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+}
+/* ========================== */
+/* 🧭 Centered Nav */
+/* ========================== */
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #f0a500;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f0a500;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ========================== */
+/* 🍫 Chocolate Hamburger Menu */
+/* ========================== */
+.choco-menu {
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+  position: absolute;
+  right: 40px;
+}
+
+.bar {
+  height: 4px;
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+.bar1 { width: 100%; }
+.bar2 { width: 80%; }
+.bar3 { width: 60%; }
+
+.choco-menu.open .bar1 {
+  transform: rotate(45deg) translate(6px, 6px);
+  width: 100%;
+}
+.choco-menu.open .bar2 {
+  opacity: 0;
+}
+.choco-menu.open .bar3 {
+  transform: rotate(-45deg) translate(6px, -6px);
+  width: 100%;
+}
+
+/* ========================== */
+/* 📱 Responsive - Hide nav */
+/* ========================== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* ========================== */
+/* 📜 Side Menu */
+/* ========================== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 260px;
+  height: 100vh;
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(12px);
+  color: white;
+  transition: right 0.5s ease;
+  z-index: 1000;
+  padding: 30px 20px;
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.close-btn:hover {
+  transform: scale(1.2) rotate(90deg);
+}
+
+.menu-items {
+  list-style: none;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.menu-items a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.menu-items a:hover {
+  color: #f0a500;
+}
+/* 🔲 Fullscreen Overlay */
+.fullscreen-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.fullscreen-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ❌ Close Button */
+.fullscreen-menu .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.fullscreen-menu .close-btn:hover {
+  transform: scale(1.2) rotate(90deg);
+}
+
+/* 🔗 Menu Links */
+.fullscreen-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0;
+}
+
+.fullscreen-links li {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.5s forwards ease;
+}
+
+.fullscreen-links a {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  transition: color 0.3s;
+}
+
+.fullscreen-links a:hover {
+  color: #f0a500;
+}
+
+/* 🔄 Keyframe */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================== */
+/* 🎥 Parallax Section */
+/* ========================== */
+/* Parallax Section */
+.parallax-video-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%; /* Bigger height for parallax effect */
+  z-index: -1;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.parallax-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Dim effect */
+}
+
+.overlay-content {
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.overlay-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px black;
+}
+
+.overlay-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 5px black;
+}
+
+.overlay-content button {
+  background-color: #f0a500;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  transition: background 0.3s ease;
+}
+
+.overlay-content button:hover {
+  background-color: #d18e00;
+}
+
+.overlay-content button {
+  background-color: #f0a500;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+}
+
+.overlay-content button:hover {
+  background-color: #d18e00;
+}

@@ -1,0 +1,179 @@
+.tech-tools-main {
+  background: #000;
+  padding: 120px 20px;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1.4s ease-in;
+}
+
+/* Animated background dots + gradient */
+.tech-tools-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 0, 122, 0.03), transparent),
+    radial-gradient(circle at 70% 60%, rgba(0, 212, 255, 0.03), transparent),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='30' cy='30' r='5' fill='rgba(255,255,255,0.08)' /%3E%3Ccircle cx='80' cy='50' r='3' fill='rgba(0,212,255,0.12)' /%3E%3Ccircle cx='150' cy='80' r='4' fill='rgba(255,0,122,0.12)' /%3E%3Ccircle cx='50' cy='120' r='6' fill='rgba(0,255,159,0.1)' /%3E%3C/svg%3E") repeat;
+  opacity: 0.15;
+  animation: bgFloat 30s linear infinite;
+  z-index: 0;
+}
+
+/* Section Header */
+.tech-tools-header {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-tools-header h2 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.tech-tools-header h2 span {
+  color: #f72585;
+}
+
+.tech-tools-header p {
+  font-size: 18px;
+  color: #b0b0b0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid of Services */
+.tech-tools-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Each Card */
+.tool-box {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 40px 30px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+}
+
+.tool-box:nth-child(1) { animation-delay: 0.2s; }
+.tool-box:nth-child(2) { animation-delay: 0.4s; }
+.tool-box:nth-child(3) { animation-delay: 0.6s; }
+.tool-box:nth-child(4) { animation-delay: 0.8s; }
+
+/* Glowing border ring */
+.tool-box::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #f72585, #00d4ff, #f72585);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tool-box:hover::after {
+  opacity: 0.6;
+}
+
+.tool-box:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 20px rgba(247, 37, 133, 0.2);
+}
+
+/* Icon */
+.tool-icon {
+  font-size: 42px;
+  color: #f72585;
+  margin-bottom: 16px;
+  animation: floatY 2.5s ease-in-out infinite;
+}
+
+/* Title */
+.tool-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+/* Description */
+.tool-desc {
+  font-size: 15px;
+  color: #b0b0b0;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* ================= Animation Keyframes ================= */
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bgFloat {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 768px) {
+  .tech-tools-header h2 {
+    font-size: 36px;
+  }
+
+  .tool-box {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-tools-header h2 {
+    font-size: 28px;
+  }
+
+  .tool-icon {
+    font-size: 32px;
+  }
+}

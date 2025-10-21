@@ -1,0 +1,34 @@
+.loading-screen {
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-video {
+  position: relative;
+  width: 50vw;                  /* Increase size: try 60vw or 500px as needed */
+  max-width: 90vw;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(130%);
+  
+  border: none;
+  outline: none;
+  box-shadow: 0 0 60px 60px #000; /* 🧠 Blend edges into background */
+  background-color: transparent;
+  
+  mix-blend-mode: lighten;      /* Optional: help smooth into black bg */
+  z-index: 2;
+}
