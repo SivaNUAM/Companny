@@ -392,7 +392,7 @@ const HomeSection = () => {
                 {index === 3 && <div className="tap-label">Tap to Explore</div>}
                  */}
 
-                <p>Explore {card.title}</p>
+                {/* <p>Explore {card.title}</p> */}
               </div>
             </div>
           ))}
