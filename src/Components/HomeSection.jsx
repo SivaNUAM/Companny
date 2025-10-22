@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import robot from "../assets/robot.jpg";
-import medias from "../assets/medias.png";
-import agros from "../assets/agros.png";
-import boxes from "../assets/boxes.png";
+import medias from "../assets/medias.jpg";
+import agros from "../assets/agros.jpg";
+import boxes from "../assets/boxes.jpg";
 
 const images = { robot, medias, agros, boxes };
 
