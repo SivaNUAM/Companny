@@ -7,6 +7,13 @@
   position: relative;
   overflow: hidden;
 }
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* centers the icon div itself if needed */
+  text-align: center;
+}
 
 /* Animated background pattern */
 .product-section::before {

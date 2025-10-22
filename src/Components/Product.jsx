@@ -52,7 +52,10 @@ const Product = () => {
         <div className="features-grid">
           {features.map((feature, index) => (
             <div className="feature-card" key={index}>
-              <div className="icon">{feature.icon}</div>
+            <div className="icon flex items-center justify-center">
+             {feature.icon}
+            </div>
+
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
               <ul className="feature-list">

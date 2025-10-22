@@ -27,7 +27,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add submit logic here
     console.log('Form submitted:', formData);
   };
 
@@ -52,6 +51,7 @@ const Contact = () => {
     }
   ];
 
+  // Pure black background
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -59,43 +59,6 @@ const Contact = () => {
     color: '#ffffff',
     fontFamily: '"Segoe UI", system-ui, sans-serif',
     overflow: 'hidden'
-  };
-
-  const backgroundStyle = {
-    position: 'absolute',
-    inset: '0',
-    background: 'linear-gradient(135deg, #000000 0%, #1f2937 50%, #000000 100%)'
-  };
-
-  const backgroundOverlayStyle = {
-    position: 'absolute',
-    inset: '0',
-    opacity: '0.3'
-  };
-
-  const blurCircle1Style = {
-    position: 'absolute',
-    top: '25%',
-    left: '25%',
-    width: '384px',
-    height: '384px',
-    background: 'rgba(236, 72, 153, 0.1)',
-    borderRadius: '50%',
-    filter: 'blur(60px)',
-    animation: 'pulse 3s ease-in-out infinite'
-  };
-
-  const blurCircle2Style = {
-    position: 'absolute',
-    bottom: '25%',
-    right: '25%',
-    width: '320px',
-    height: '320px',
-    background: 'rgba(168, 85, 247, 0.1)',
-    borderRadius: '50%',
-    filter: 'blur(60px)',
-    animation: 'pulse 3s ease-in-out infinite',
-    animationDelay: '1s'
   };
 
   const sectionStyle = {
@@ -276,17 +239,6 @@ const Contact = () => {
     boxSizing: 'border-box'
   });
 
-  const inputGlowStyle = (isFocused) => ({
-    position: 'absolute',
-    inset: '0',
-    borderRadius: '12px',
-    background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(168, 85, 247, 0.2))',
-    opacity: isFocused ? '1' : '0',
-    transition: 'opacity 0.3s ease-out',
-    zIndex: '-1',
-    filter: 'blur(4px)'
-  });
-
   const buttonStyle = {
     width: '100%',
     padding: '16px',
@@ -369,14 +321,6 @@ const Contact = () => {
 
   return (
     <div style={containerStyle}>
-      {/* Animated Background */}
-      <div style={backgroundStyle}>
-        <div style={backgroundOverlayStyle}>
-          <div style={blurCircle1Style}></div>
-          <div style={blurCircle2Style}></div>
-        </div>
-      </div>
-
       {/* Floating Particles */}
       {particles.map((particle) => (
         <div
@@ -448,11 +392,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div style={formContainerStyle}>
             <div style={formStyle}>
-              <div>
-                <h3 style={formTitleStyle}>
-                  Send Message
-                </h3>
-              </div>
+              <h3 style={formTitleStyle}>Send Message</h3>
 
               <div style={inputGroupStyle}>
                 <div style={inputContainerStyle}>
@@ -491,10 +431,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     rows="5"
                     required
-                    style={{
-                      ...inputStyle(false),
-                      resize: 'none'
-                    }}
+                    style={{ ...inputStyle(false), resize: 'none' }}
                     onFocus={(e) => e.target.style.border = '2px solid #ec4899'}
                     onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
                   />
