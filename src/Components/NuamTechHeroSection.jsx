@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -13,6 +13,16 @@ const NuamTechHeroSection = () => {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  // Prevent Math.random() re-render flicker
+  const [particles] = useState(() =>
+    [...Array(20)].map(() => ({
+      size: Math.random() * 6 + 2,
+      left: Math.random() * 100,
+      delay: Math.random() * 15,
+      duration: Math.random() * 20 + 15,
+    }))
+  );
+
   return (
     <>
       <style>{`
@@ -26,7 +36,7 @@ const NuamTechHeroSection = () => {
         .nuam-hero {
           position: relative;
           width: 100%;
-          height: 100vh;
+          min-height: 100vh;
           background: var(--bg);
           overflow: hidden;
           color: var(--text);
@@ -38,7 +48,7 @@ const NuamTechHeroSection = () => {
 
         .bg-grid {
           position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
+          inset: 0;
           background-image: 
             linear-gradient(rgba(247, 37, 133, 0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(247, 37, 133, 0.1) 1px, transparent 1px);
@@ -50,19 +60,18 @@ const NuamTechHeroSection = () => {
 
         .floating-particles {
           position: absolute;
-          width: 100%;
-          height: 100%;
+          inset: 0;
           overflow: hidden;
           z-index: 2;
         }
 
         .particle {
           position: absolute;
-          background: var(--accent);
+          background: var(--succent);
           border-radius: 50%;
           opacity: 0.4;
           filter: blur(1px);
-          animation: float 15s infinite linear;
+          animation: float linear infinite;
         }
 
         @keyframes float {
@@ -77,131 +86,171 @@ const NuamTechHeroSection = () => {
           z-index: 10;
           text-align: center;
           max-width: 900px;
-          padding: 2rem;
+          padding: 1.5rem;
         }
 
-        .hero-title {
-          font-size: clamp(3rem, 8vw, 6rem);
-          font-weight: 900;
-          background: linear-gradient(135deg, #fff, var(--accent));
+        /* === FULL MAIN HEADING DESIGN (MATCHES OTHER PAGES) === */
+        .section-title {
+          font-size: clamp(2.4rem, 7vw, 6rem);
+          font-weight: 800;
+          text-align: center;
+          margin: 0 0 1.5rem;
+          background: linear-gradient(135deg, #ffffff, #a855f7, #06b6d4);
+          background-size: 300% 300%;
           -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           background-clip: text;
-          color: transparent;
-          margin: 0;
+          animation: gradientShift 4s ease-in-out infinite, titleSlideUp 1s ease-out;
+          position: relative;
           line-height: 1.1;
           letter-spacing: -0.02em;
-          text-shadow: 0 0 30px var(--glow);
-          animation: glowPulse 3s ease-in-out infinite alternate;
         }
 
-        @keyframes glowPulse {
-          from { text-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow); }
-          to { text-shadow: 0 0 40px var(--glow), 0 0 80px var(--glow); }
+        .section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #a855f7, transparent);
+          border-radius: 2px;
+          animation: underlineGrow 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes gradientShift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titleSlideUp {
+          0% { opacity: 0; transform: translateY(40px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes underlineGrow {
+          0% { width: 0; opacity: 0; }
+          100% { width: 80px; opacity: 1; }
         }
 
         .hero-subtitle {
-          font-size: clamp(1.2rem, 3vw, 1.8rem);
-          margin: 1.5rem 0;
+          font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+          margin: 1.2rem 0;
           opacity: 0.9;
           font-weight: 300;
           letter-spacing: 0.5px;
         }
 
         .hero-desc {
-          font-size: 1.1rem;
+          font-size: clamp(0.95rem, 2.8vw, 1.1rem);
           max-width: 700px;
-          margin: 0 auto 2.5rem;
+          margin: 0 auto 2rem;
           line-height: 1.7;
           opacity: 0.8;
+          padding: 0 0.5rem;
         }
 
         .cta-button {
           display: inline-block;
-          padding: 1rem 2.5rem;
-          font-size: 1.1rem;
-          font-weight: 600;
+          padding: 0.9rem 2.2rem;
+          font-size: 1rem;
+          font-weight: 700;
           color: #fff;
           background: transparent;
           border: 2px solid var(--accent);
-          border-radius: 50px;
+          border-radius: 60px;
           text-decoration: none;
           position: relative;
           overflow: hidden;
           transition: all 0.4s ease;
-          z-index: 1;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 1.2px;
+          min-width: 180px;
         }
 
         .cta-button::before {
           content: '';
           position: absolute;
           top: 0; left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(247, 37, 133, 0.3), transparent);
+          width: 100%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(247,37,133,0.3), transparent);
           transition: left 0.7s;
           z-index: -1;
         }
 
-        .cta-button:hover::before {
-          left: 100%;
-        }
-
+        .cta-button:hover::before { left: 100%; }
         .cta-button:hover {
           background: var(--accent);
-          box-shadow: 0 0 30px rgba(247, 37, 133, 0.6);
-          transform: translateY(-3px);
+          box-shadow: 0 0 40px var(--glow);
+          transform: translateY(-4px);
         }
 
         .tech-badge {
           display: inline-block;
-          padding: 0.5rem 1rem;
-          margin: 0.5rem;
+          padding: 0.45rem 0.9rem;
+          margin: 0.4rem;
           background: rgba(247, 37, 133, 0.15);
           border: 1px solid var(--accent);
           border-radius: 30px;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 500;
           backdrop-filter: blur(5px);
         }
 
-        /* 3D Tilt Effect */
         .hero-card {
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(12px);
           border: 1px solid rgba(247, 37, 133, 0.3);
           border-radius: 20px;
-          padding: 2rem;
-          margin-top: 3rem;
+          padding: 1.6rem;
+          margin-top: 2rem;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
           transform-style: preserve-3d;
         }
 
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
           .hero-content { padding: 1rem; }
-          .hero-card { padding: 1.5rem; }
-          .tech-badge { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+          .hero-card { padding: 1.2rem; margin-top: 1.5rem; }
+          .tech-badge { 
+            font-size: 0.8rem; 
+            padding: 0.35rem 0.7rem; 
+            margin: 0.3rem;
+          }
+          .cta-button {
+            padding: 0.8rem 2rem;
+            font-size: 0.95rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-content { padding: 0.8rem; }
+          .hero-card { padding: 1rem; }
+          .tech-badge { 
+            display: block; 
+            margin: 0.5rem auto; 
+            max-width: 80%;
+          }
         }
       `}</style>
 
       <section ref={sectionRef} className="nuam-hero">
-        {/* Animated Grid Background */}
+        {/* Animated Grid */}
         <motion.div className="bg-grid" style={{ y: yBg }} />
 
         {/* Floating Particles */}
         <div className="floating-particles">
-          {[...Array(20)].map((_, i) => (
+          {particles.map((p, i) => (
             <div
               key={i}
               className="particle"
               style={{
-                width: Math.random() * 6 + 2 + "px",
-                height: Math.random() * 6 + 2 + "px",
-                left: Math.random() * 100 + "%",
-                animationDelay: Math.random() * 15 + "s",
-                animationDuration: (Math.random() * 20 + 15) + "s",
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                left: `${p.left}%`,
+                animationDelay: `${p.delay}s`,
+                animationDuration: `${p.duration}s`,
               }}
             />
           ))}
@@ -209,15 +258,17 @@ const NuamTechHeroSection = () => {
 
         {/* Main Content */}
         <motion.div className="hero-content" style={{ y: yText, opacity }}>
-          <motion.h1
-            className="hero-title"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{ marginTop: '120px' }}
-          >
-            NUAM TECH
-          </motion.h1>
+          {/* FULL MAIN HEADING */}
+      <motion.h1
+  className="section-title"
+  style={{ marginTop: "28px" }}
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, ease: "easeOut" }}
+>
+  NUAM TECH
+</motion.h1>
+
 
           <motion.p
             className="hero-subtitle"
@@ -253,10 +304,9 @@ const NuamTechHeroSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            style={{ transform: "rotateX(5deg)",marginTop: '0px' }}
-            
+            style={{ transform: "rotateX(5deg)" }}
           >
-            <div>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem" }}>
               <span className="tech-badge">Website Development</span>
               <span className="tech-badge">APP Development</span>
               <span className="tech-badge">Custom Software</span>

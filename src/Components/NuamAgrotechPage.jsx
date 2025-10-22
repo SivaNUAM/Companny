@@ -27,37 +27,16 @@ const NuamAgrotechPage = () => {
         setInterval(() => setStats(s => ({ ...s, farmers: Math.min(s.farmers + 19, 1500) })), 25),
         setInterval(() => setStats(s => ({ ...s, waterSaved: Math.min(s.waterSaved + 2, 92) })), 35),
         setInterval(() => setStats(s => ({ ...s, yieldBoost: Math.min(s.yieldBoost + 5, 320) })), 20),
-        setInterval(() => setStats(s => ({ ...s, dataPoints: Math.min(s.dataPoints + 500, 85000) })), 15),
+        setInterval(() => setStats(s => ({ ...s, dataPoints南: Math.min(s.dataPoints + 500, 85000) })), 15),
       ];
       return () => timers.forEach(clearInterval);
     }
   }, [inView]);
 
-  /* -------------------------------------------------
-     PRODUCTS – now with real Unsplash images
-     ------------------------------------------------- */
   const products = [
-    {
-      name: "Balcony Bloom",
-      size: "2–4 Plants",
-      price: "$89",
-      features: ["App Control", "LED", "Auto-Water"],
-      img: smart
-    },
-    {
-      name: "Terrace Titan",
-      size: "8–12 Plants",
-      price: "$199",
-      features: ["AI Growth", "Solar", "Weather Sync"],
-      img: Terrace
-    },
-    {
-      name: "Rooftop Pro",
-      size: "20+ Plants",
-      price: "$499",
-      features: ["IoT Sensors", "Cloud AI", "Enterprise"],
-      img: Roof
-    },
+    { name: "Balcony Bloom", size: "2–4 Plants", price: "$89", features: ["App Control", "LED", "Auto-Water"], img: smart },
+    { name: "Terrace Titan", size: "8–12 Plants", price: "$199", features: ["AI Growth", "Solar", "Weather Sync"], img: Terrace },
+    { name: "Rooftop Pro", size: "20+ Plants", price: "$499", features: ["IoT Sensors", "Cloud AI", "Enterprise"], img: Roof },
   ];
 
   const testimonials = [
@@ -66,104 +45,154 @@ const NuamAgrotechPage = () => {
     { name: "Ananya Singh", role: "Bangalore Apartment", text: "Kids now eat what they grow. Priceless.", rating: 5 },
   ];
 
-  /* -------------------------------------------------
-     GALLERY – six real Unsplash images
-     ------------------------------------------------- */
   const galleryImages = [
-  "https://source.unsplash.com/400x300/?balcony,garden,urban",
-  "https://source.unsplash.com/400x300/?terrace,vegetables,home",
-  "https://source.unsplash.com/400x300/?rooftop,farming,india",
-  "https://source.unsplash.com/400x300/?hydroponics,apartment",
-  "https://source.unsplash.com/400x300/?urban,farming,lettuce",
-  "https://source.unsplash.com/400x300/?smart,garden,led",
-];
+    "https://source.unsplash.com/400x300/?balcony,garden,urban",
+    "https://source.unsplash.com/400x300/?terrace,vegetables,home",
+    "https://source.unsplash.com/400x300/?rooftop,farming,india",
+    "https://source.unsplash.com/400x300/?hydroponics,apartment",
+    "https://source.unsplash.com/400x300/?urban,farming,lettuce",
+    "https://source.unsplash.com/400x300/?smart,garden,led",
+  ];
 
   return (
     <>
-      <style>{`
-        :root {
-          --bg: #000;
-          --accent: #f72585;
-          --text: #fff;
-          --card: rgba(255, 255, 255, 0.06);
-          --glow: rgba(247, 37, 133, 0.5);
-          --light: rgba(255, 255, 255, 0.08);
-          --grid: repeating-linear-gradient(0deg, rgba(247,37,133,0.03) 0px, transparent 1px, transparent 50px, rgba(247,37,133,0.03) 51px),
-                  repeating-linear-gradient(90deg, rgba(247,37,133,0.03) 0px, transparent 1px, transparent 50px, rgba(247,37,133,0.03) 51px);
-        }
+     <style>{`
+  :root {
+    --bg: #000;
+    --accent: #f72585;
+    --text: #fff;
+    --card: rgba(255, 255, 255, 0.06);
+    --glow: rgba(247, 37, 133, 0.5);
+    --light: rgba(255, 255, 255, 0.08);
+    --grid: repeating-linear-gradient(0deg, rgba(247,37,133,0.03) 0px, transparent 1px, transparent 50px, rgba(247,37,133,0.03) 51px),
+            repeating-linear-gradient(90deg, rgba(247,37,133,0.03) 0px, transparent 1px, transparent 50px, rgba(247,37,133,0.03) 51px);
+  }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        .agro-page { position: relative; }
+  .agro-page { position: relative; }
 
-        /* HERO */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: var(--grid); background-size: 50px 50px; opacity: 0.15; }
-        .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(247,37,133,0.2), transparent 70%); filter: blur(100px); }
-        .hero h1 { font-size: clamp(3rem, 10vw, 7.5rem); font-weight: 900; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; color: transparent; margin: 0; text-shadow: 0 0 50px var(--glow); letter-spacing: -0.03em; }
-        .hero p { font-size: 1.4rem; max-width: 900px; margin: 1.8rem auto; opacity: 0.92; line-height: 1.8; font-weight: 300; }
+  /* HERO */
+  .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: var(--grid); background-size: 50px 50px; opacity: 0.15; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(247,37,133,0.2), transparent 70%); filter: blur(100px); }
 
-        /* SECTION */
-        .section { padding: 8rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
-        .section-title { font-size: 3.2rem; text-align: center; margin-bottom: 4rem; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; color: transparent; font-weight: 800; }
+  /* REDUCED FONT SIZE: HERO TITLE */
+  .section-title {
+    font-size: clamp(2.4rem, 6vw, 4.8rem); /* Reduced */
+    font-weight: 800;
+    text-align: center;
+    margin: 0 auto 3rem;
+    background: linear-gradient(135deg, #ffffff, #a855f7, #06b6d4);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite, titleSlideUp 1s ease-out;
+    position: relative;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
 
-        /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .card { background: var(--card); border: 1px solid rgba(247,37,133,0.3); border-radius: 20px; padding: 2rem; backdrop-filter: blur(14px); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-16px) scale(1.02); box-shadow: 0 0 50px var(--glow); border-color: var(--accent); }
-        .card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(247,37,133,0.25), transparent); transition: left 0.9s; }
-        .card:hover::before { left: 100%; }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px; /* Slightly smaller underline */
+    height: 3.5px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    border-radius: 2px;
+    animation: underlineGrow 1.5s ease-out 0.5s both;
+  }
 
-        /* IT SECTION */
-        .it-card { text-align: center; }
-        .it-icon { width: 80px; height: 80px; background: rgba(247,37,133,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--accent); }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 
-        /* PRODUCT */
-        .product-img { width: 100%; height: 220px; background: var(--light); border-radius: 16px; margin-bottom: 1rem; background-size: cover; background-position: center; }
-        .price { font-size: 2rem; color: var(--accent); font-weight: 700; }
+  @keyframes titleSlideUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 
-        /* STATS */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
-        .stat-num { font-size: 3.5rem; font-weight: 900; color: var(--accent); }
-        .stat-label { font-size: 1.1rem; opacity: 0.8; }
+  @keyframes underlineGrow {
+    0% { width: 0; opacity: 0; }
+    100% { width: 90px; opacity: 1; }
+  }
 
-        /* TESTIMONIAL */
-        .testimonial { background: var(--light); border-radius: 16px; padding: 2rem; }
-        .stars { color: #ffd700; margin-bottom: 1rem; }
+  /* HERO TITLE: Smaller & elegant */
+  .hero h1.section-title {
+    font-size: clamp(3rem, 8vw, 6rem); /* Reduced from 7.5rem */
+    margin-bottom: 1.2rem;
+  }
 
-        /* GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-        .gallery-img { height: 200px; background: var(--light); border-radius: 14px; background-size: cover; transition: transform 0.4s; }
-        .gallery-img:hover { transform: scale(1.05); }
+  .hero p {
+    font-size: 1.3rem; /* Reduced */
+    max-width: 850px;
+    margin: 1.5rem auto;
+    opacity: 0.92;
+    line-height: 1.8;
+    font-weight: 300;
+  }
 
-        /* CTA */
-        .cta-final { background: linear-gradient(135deg, rgba(247,37,133,0.25), transparent); text-align: center; padding: 9rem 2rem; }
-        .cta-button { display: inline-block; padding: 1.4rem 4rem; font-size: 1.3rem; background: transparent; border: 2.5px solid var(--accent); color: #fff; border-radius: 60px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; position: relative; overflow: hidden; transition: all 0.5s; }
-        .cta-button:hover { background: var(--accent); box-shadow: 0 0 50px var(--glow); transform: translateY(-6px); }
+  /* SECTION */
+  .section { padding: 7rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
 
-        /* FOOTER */
-        footer { background: rgba(0,0,0,0.9); padding: 5rem 2rem 2rem; text-align: center; border-top: 1px solid rgba(247,37,133,0.4); }
-        .footer-links a { color: #ccc; margin: 0 1.2rem; text-decoration: none; font-size: 0.95rem; }
-        .footer-links a:hover { color: var(--accent); }
+  /* GRID & CARDS */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .card { background: var(--card); border: 1px solid rgba(247,37,133,0.3); border-radius: 20px; padding: 1.8rem; backdrop-filter: blur(14px); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
+  .card:hover { transform: translateY(-14px) scale(1.02); box-shadow: 0 0 50px var(--glow); border-color: var(--accent); }
+  .card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(247,37,133,0.25), transparent); transition: left 0.9s; }
+  .card:hover::before { left: 100%; }
 
-        @media (max-width: 768px) {
-          .section { padding: 5rem 1rem; }
-          .section-title { font-size: 2.4rem; }
-          .hero h1 { font-size: 3rem; }
-          .grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
+  .it-card { text-align: center; }
+  .it-icon { width: 72px; height: 72px; background: rgba(247,37,133,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; color: var(--accent); }
+
+  .product-img { width: 100%; height: 200px; background: var(--light); border-radius: 16px; margin-bottom: 1rem; background-size: cover; background-position: center; }
+  .price { font-size: 1.8rem; color: var(--accent); font-weight: 700; }
+
+  /* CARD TITLES: Slightly smaller */
+  .card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.8rem; text-align: center; }
+  .stat-num { font-size: 3rem; font-weight: 900; color: var(--accent); }
+  .stat-label { font-size: 1rem; opacity: 0.8; }
+
+  .testimonial { background: var(--light); border-radius: 16px; padding: 1.8rem; }
+  .stars { color: #ffd700; margin-bottom: 0.8rem; }
+
+  .cta-final { background: linear-gradient(135deg, rgba(247,37,133,0.25), transparent); text-align: center; padding: 8rem 2rem; }
+  .cta-button { display: inline-block; padding: 1.2rem 3.5rem; font-size: 1.2rem; background: transparent; border: 2px solid var(--accent); color: #fff; border-radius: 60px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; position: relative; overflow: hidden; transition: all 0.5s; }
+  .cta-button:hover { background: var(--accent); box-shadow: 0 0 50px var(--glow); transform: translateY(-5px); }
+
+  @media (max-width: 768px) {
+    .section { padding: 4.5rem 1rem; }
+    .section-title { font-size: 2.2rem; margin-bottom: 2rem; }
+    .hero h1.section-title { font-size: 2.8rem; }
+    .hero p { font-size: 1.15rem; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 1.5rem; }
+    .cta-button { padding: 1rem 2.5rem; font-size: 1rem; }
+  }
+`}</style>
 
       <div className="agro-page">
         {/* HERO */}
         <motion.section className="hero" ref={heroRef}>
-          <motion.div className="hero-bg" style={{ scale: scaleBg }} />
+          {/* <motion.div className="hero-bg" style={{ scale: scaleBg }} /> */}
           <motion.div style={{ y: yHero, position: 'relative', zIndex: 10 }}>
             <motion.h1
+              className="section-title"
               initial={{ y: 70, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.2, ease: "easeOut" }}
+              style={{ marginBottom: '1.5rem' }}
             >
               NUAM AGROTECH
             </motion.h1>
@@ -172,7 +201,7 @@ const NuamAgrotechPage = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
             >
-             Bringing technology and farming together — so anyone can cultivate fresh produce in their own space, whether it’s a terrace, backyard, or balcony.
+              Bringing technology and farming together — so anyone can cultivate fresh produce in their own space, whether it’s a terrace, backyard, or balcony.
             </motion.p>
             <motion.div
               initial={{ scale: 0.8 }}
@@ -243,7 +272,6 @@ const NuamAgrotechPage = () => {
           <div className="grid">
             {products.map((p, i) => (
               <motion.div key={i} className="card" whileHover={{ y: -12 }}>
-                {/* Real image from Unsplash */}
                 <div className="product-img" style={{ backgroundImage: `url(${p.img})` }} />
                 <h3>{p.name}</h3>
                 <p style={{ opacity: 0.7, margin: '0.5rem 0' }}>{p.size}</p>
@@ -313,21 +341,6 @@ const NuamAgrotechPage = () => {
             ))}
           </div>
         </section>
-
-        {/* GALLERY */}
-        {/* <section className="section">
-          <h2 className="section-title">Real Homes, Real Harvests</h2>
-          <div className="gallery">
-            {galleryImages.map((src, i) => (
-              <motion.div
-                key={i}
-                className="gallery-img"
-                style={{ backgroundImage: `url(${src})` }}
-                whileHover={{ scale: 1.08 }}
-              />
-            ))}
-          </div>
-        </section> */}
 
         {/* FINAL CTA */}
         <section className="cta-final">

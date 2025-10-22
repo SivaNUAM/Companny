@@ -346,10 +346,17 @@ const HomeSection = () => {
           .card-overlay p { font-size: 0.8rem; }
 
           .tap-label {
-            font-size: 0.65rem;
-            padding: 0.3rem 0.7rem;
-            margin: 0.4rem 0 0.6rem;
-          }
+  font-size: 0.65rem;
+  padding: 0.3rem 0.7rem;
+  margin: 0.4rem 0 0.6rem;
+  background: #000; /* 🔥 Black background */
+  color: var(--highlight); /* Keep text color matching your highlight */
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
         }
       `}</style>
 
@@ -379,11 +386,11 @@ const HomeSection = () => {
                 <h2>{card.title}</h2>
 
                 {/* ONLY ON NUAM TECH */}
-                {index === 0 && <div className="tap-label">Tap to Explore</div>}
+                {/* {index === 0 && <div className="tap-label">Tap to Explore</div>}
                 {index === 1 && <div className="tap-label">Tap to Explore</div>}
                 {index === 2 && <div className="tap-label">Tap to Explore</div>}
                 {index === 3 && <div className="tap-label">Tap to Explore</div>}
-                
+                 */}
 
                 <p>Explore {card.title}</p>
               </div>
